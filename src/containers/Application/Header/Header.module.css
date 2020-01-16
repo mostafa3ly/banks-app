@@ -1,0 +1,10 @@
+.headline {
+  margin: auto 0;
+}
+
+.headline h2 {
+  font-size: 1rem;
+  line-height: 150%;
+  font-style: normal;
+  font-weight: bold;
+}

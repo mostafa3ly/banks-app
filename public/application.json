@@ -1,0 +1,94 @@
+
+{
+    "msg": "card form",
+    "application": {
+        "_id": "5b8d7ea03fe8bad80c23aa02",
+        "bank": "5b8d75d43fe8bad0e750ac02",
+        "watson_card_name": "كلاسيك",
+        "generated_image_5": "card_5_5b8d7ea03fe8bad80c23aa02.jpg",
+        "form_id": "5d78d032f6960d1b46251f62",
+        "unified_name": null,
+        "unified_img": "https://backend-v2.banks.tips/storage/Card/cards/card_5_5b8d7ea03fe8bad80c23aa02.jpg",
+        "form": {
+            "_id": "5d78d032f6960d1b46251f62",
+            "title": "Card Submission Form",
+            "description": "Credit Agricole Card",
+            "elements": [
+                {
+                    "type": "text",
+                    "inputLabel": "First Name",
+                    "inputName": "first_name",
+                    "inputToolTip": "Please enter the first name",
+                    "inputRequired": true,
+                    "inputDisabled": false
+                },
+                {
+                    "type": "text",
+                    "inputLabel": "Last Name",
+                    "inputName": "last_name",
+                    "inputToolTip": "Enter your last name",
+                    "inputRequired": true,
+                    "inputDisabled": false
+                },
+                {
+                    "type": "email",
+                    "inputLabel": "Email",
+                    "inputName": "email",
+                    "inputToolTip": null,
+                    "inputRequired": false,
+                    "inputDisabled": false
+                },
+                {
+                    "type": "number",
+                    "inputLabel": "Age",
+                    "inputName": "number",
+                    "inputToolTip": null,
+                    "inputRequired": false,
+                    "inputDisabled": false
+                },
+                {
+                    "type": "checkbox",
+                    "inputLabel": "Checkbox",
+                    "inputName": "checkbox",
+                    "inputToolTip": null,
+                    "inputRequired": false,
+                    "inputDisabled": false
+                },
+                {
+                    "type": "select",
+                    "inputLabel": "Select",
+                    "inputName": "select",
+                    "inputToolTip": null,
+                    "inputRequired": false,
+                    "inputDisabled": false,
+                    "inputChoices": [
+                        "Red", "Black","White"
+                    ]
+                },
+                {
+                    "type": "textarea",
+                    "inputLabel": "Enter your message",
+                    "inputName": "textarea",
+                    "inputToolTip": null,
+                    "inputRequired": false,
+                    "inputDisabled": false
+                },
+                {
+                    "type": "radio",
+                    "inputLabel": null,
+                    "inputName": null,
+                    "inputToolTip": null,
+                    "inputRequired": false,
+                    "inputDisabled": false,
+                    "inputChoices": [
+                        null
+                    ]
+                }
+            ],
+            "updated_at": "2019-09-11 10:45:06",
+            "created_at": "2019-09-11 10:45:06",
+            "original_img": null,
+            "media_original": null
+        }
+    }
+}

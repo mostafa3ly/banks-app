@@ -1,0 +1,112 @@
+input, textarea, select {
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-radius: 4px;
+    padding: 6px 12px;
+    outline: none;
+    background: white;
+}
+
+input[type="number"] {
+    border: none;
+    text-align: center;
+    max-width: 70px;
+    -moz-appearance:textfield;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    appearance: none;
+    margin: 0;
+}
+
+select {
+    font-style: normal;
+    font-size: 16px;
+    line-height: 22px;
+    color: black;
+    font-weight: 500;
+    outline: none;
+}
+
+input::placeholder, textarea::placeholder {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 17px;
+    line-height: 20px;
+    color: rgba(0, 0, 0, 0.2);
+}
+
+.numberButton {
+    height: 100%;
+    border-radius: 4px;
+    color: #0084FF;
+    border: none;
+    background-color: transparent;
+    font-weight: 500;
+    font-size: 25px;
+    line-height: 22px;
+    transition: all 0.1s ease-in-out;
+}
+
+.numberButton:hover, .numberButton:active {
+    color: #CCE6FF;
+    border-color: #CCE6FF;
+}
+
+
+.option {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 22px;
+    color: black;
+    font-weight: 500;
+    outline: none;
+}
+
+.checkbox {
+    position: relative;
+    font-size: 16px;
+    line-height: 22px;
+    padding: 1px 0 1px 40px;
+    margin: 0;
+}
+
+.checkbox span {
+    background-color: #fff;
+    border: 2px solid #0084FF;
+    border-radius: 50%;
+    cursor: pointer;
+    height: 24px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 24px; 
+}
+
+.checkbox span:after {
+    border: 2px solid #fff;
+    border-top: none;
+    border-right: none;
+    content: "";
+    height: 6px;
+    left: 4px;
+    opacity: 0;
+    position: absolute;
+    top: 6px;
+    transform: rotate(-50deg);
+    width: 12px;
+}
+
+.checkbox input[type="checkbox"] {
+    visibility: hidden;
+}
+
+.checkbox input[type="checkbox"]:checked+span {
+    background-color: #0084FF;
+}
+
+.checkbox input[type="checkbox"]:checked+span:after {
+    opacity: 1;
+}
+
