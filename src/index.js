@@ -4,6 +4,7 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import axios from 'axios';
+import { BrowserRouter } from 'react-router-dom';
 
 axios.defaults.baseURL = 'http://staging-backend.banks.tips/api';
 // axios.defaults.baseURL = 'http://backend-v2.banks.tips/api';
@@ -20,9 +21,13 @@ axios.interceptors.response.use(response => {
 }, error => {
     return Promise.reject(error);
 });
+const app = (
+    <BrowserRouter  basename="/">
+        <App />
+    </BrowserRouter>
+)
 
-
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(app, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

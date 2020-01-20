@@ -18,7 +18,7 @@ const vendor = (props) => {
                     </div>
                     <div className="col-2 p-0 text-right">
                         <a target="_blank" rel="noopener noreferrer"
-                            href={props.link !== null && props.link.startsWith("https://") ? props.link : "https://" + props.link}>
+                            href={props.link !== null && props.link.startsWith("http") ? props.link : "https://" + props.link}>
                             <img src={sendImage} alt="vendor" width="24" /></a>
                     </div>
                     <div className="col-12 p-0">

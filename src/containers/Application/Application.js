@@ -4,8 +4,8 @@ import axios from 'axios';
 import classes from './Application.module.css';
 import Input from '../../components/Input/Input';
 import sendImage from '../../assets/send_white.png'
-import styleClasses from '../../assets/style/Style.module.css';
-import Loader from '../../components/Loader/Loader';
+import Loader from '../../components/UI/Loader/Loader';
+import FadeIn from '../../components/UI/FadeIn/FadeIn';
 
 class Application extends Component {
     state = {
@@ -14,10 +14,12 @@ class Application extends Component {
             form_id: "",
             image: "",
             form: {
-                elements: [],
+                elements: null,
             },
             formData: {}
-        }
+        },
+        error: false,
+        loading: true
     }
 
     getFormData() {
@@ -34,11 +36,12 @@ class Application extends Component {
                     image: data.application.unified_img,
                     form: { elements: data.application.form.elements },
                     formData: {}
-                }
-                , status: "success"
+                },
+                error: false,
+                loading: false
             })
         }).catch(error => {
-            this.setState({ status: "failed" })
+            this.setState({ error: true, loading: false })
         });
     }
     componentDidMount() {
@@ -73,6 +76,8 @@ class Application extends Component {
             };
             axios.post('/form/submit', params).then(response => {
                 console.log(response);
+            }).catch(error=>{
+                console.log(error);
             })
         }
     }
@@ -98,7 +103,7 @@ class Application extends Component {
             if (isNaN(value))
                 value = null;
         }
-        if(element.type === "checkbox"){
+        if (element.type === "checkbox") {
             value = event.target.checked
         }
         application.formData[element.inputName] = value;
@@ -126,23 +131,28 @@ class Application extends Component {
             form_id: this.state.application.form_id,
             submitted: true,
             ...this.state.application.formData
-        };       
+        };
         axios.post('/form/submit', params).then(response => {
             console.log(response);
+        }).catch(error=>{
+            console.log(error);
         })
     }
 
     render() {
-        let form = this.getForm();
-        return this.state.status !== undefined ?
-            this.state.status === "success" ?
-                (<div classes={styleClasses.fadeIn}>
+        let form = this.state.error ? <h1 className="text-center">Not found</h1> : <Loader />
+        if (this.state.application.form.elements) {
+            const formElements = this.getForm();
+            form = (
+                <FadeIn>
                     <header className="container">
                         <Header image={this.state.application.image} />
                     </header>
-                    <form id="application" onSubmit={this.formSubmitHandler} method="post" action={`${axios.defaults.baseURL}/form/submit`}>
+                    <form id="application"
+                        onSubmit={this.formSubmitHandler}
+                        method="post" action={`${axios.defaults.baseURL}/form/submit`}>
                         <div className={`container ${classes.form}`}>
-                            {form}
+                            {formElements}
                         </div>
                         <footer>
                             <button type="submit" className={`btn ${classes.submit}`} >
@@ -151,10 +161,11 @@ class Application extends Component {
                             </button>
                         </footer>
                     </form>
-                </div>)
-                : <h1 className="text-center">Not found</h1>
-            : <Loader />;
-    }
+                </FadeIn>
+            );
+        }
+        return form;
 
+    }
 }
 export default Application;

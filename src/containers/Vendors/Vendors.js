@@ -3,8 +3,8 @@ import axios from 'axios';
 import classes from './Vendors.module.css'
 import Header from './Header/Header';
 import Vendor from '../../components/Vendor/Vendor'
-import Loader from '../../components/Loader/Loader';
-import styleClasses from '../../assets/style/Style.module.css';
+import Loader from '../../components/UI/Loader/Loader';
+import FadeIn from '../../components/UI/FadeIn/FadeIn';
 
 class Vendors extends Component {
 
@@ -12,9 +12,11 @@ class Vendors extends Component {
         bank: {
             logo: "",
             name: "",
-            vendors_link:"",
-            vendors: []
-        }
+            vendors_link: "",
+            vendors: null
+        },
+        loading: true,
+        error: false
     };
 
     componentDidMount() {
@@ -27,10 +29,11 @@ class Vendors extends Component {
                     vendors_link: data.vendors.vendors_link,
                     vendors: data.vendors._vendors
                 },
-                status: "success"
+                loading: false,
+                error: false
             })
         }).catch(error => {
-            this.setState({ status: "failed" })
+            this.setState({ error: true, loading: false })
         });
     }
 
@@ -45,25 +48,29 @@ class Vendors extends Component {
     }
 
     render() {
-        let Vendors = this.getVendorsList();
-        return this.state.status !== undefined ?
-            this.state.status === "success" ?
-                (<div className={styleClasses.fadeIn}>
+        let vendors = this.state.error ? <h1 className="text-center">Not found</h1> : <Loader />;
+        if (this.state.bank.vendors) {
+            const vendorsList = this.getVendorsList();
+            vendors = (
+                <FadeIn>
                     <header className="container">
                         <Header logo={this.state.bank.logo}
                             name={this.state.bank.name}
                         />
                     </header>
                     <div className={`container ${classes.vendors}`} >
-                        {Vendors}
+                        {vendorsList}
                     </div>
                     <footer>
-                        <a className={`btn ${classes.more}`} target="_blank" rel="noopener noreferrer" href={this.state.bank.vendors_link}>إعرف تفاصيل أكتر</a>
+                        <a className={`btn ${classes.more}`} target="_blank" rel="noopener noreferrer" 
+                        href={this.state.bank.vendors_link}>إعرف تفاصيل أكتر</a>
                     </footer>
-                </div>)
-                : <h1 className="text-center">Not found</h1>
-            : <Loader />;
+                </FadeIn>
+            );
+        }
+        return vendors;
     }
+
 }
 
 export default Vendors;
